@@ -718,7 +718,13 @@ MainWindow::MainWindow(Application* app, SystemTrayIcon* tray_icon, OSD* osd,
       IconLoader::Load("system-search", IconLoader::Base),
       tr("Search for album"), this, SLOT(SearchForAlbum()));
   playlist_menu_->addSeparator();
-  playlist_menu_->addAction(ui_->action_remove_from_playlist);
+  // XXX: Can I reuse the ui_->action_remove_from_playlist action for this somehow?
+  playlist_remove_ = playlist_menu_->addAction(
+    IconLoader::Load("list-remove", IconLoader::Base),
+    tr("Remove from playlist"), this, SLOT(PlaylistRemoveCurrent()));
+  playlist_remove_->setShortcut(QKeySequence("Backspace"));
+  playlist_remove_->setShortcut(QKeySequence("Delete"));
+  ui_->playlist->addAction(playlist_remove_);
   playlist_undoredo_ = playlist_menu_->addSeparator();
   playlist_menu_->addAction(ui_->action_edit_track);
   playlist_menu_->addAction(ui_->action_view_stream_details);

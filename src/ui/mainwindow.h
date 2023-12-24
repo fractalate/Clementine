@@ -367,6 +367,7 @@ class MainWindow : public QMainWindow, public PlatformInterface {
   QMenu* playlist_menu_;
   QAction* playlist_play_pause_;
   QAction* playlist_stop_after_;
+  QAction* playlist_remove_;
   QAction* playlist_undoredo_;
   QAction* playlist_organise_;
   QAction* playlist_show_in_library_;
